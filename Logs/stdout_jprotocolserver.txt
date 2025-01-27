@@ -1,0 +1,4 @@
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+2024-12-16T11:53:35.352562500 Protocol Server starting. 
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+2024-12-16T11:56:55.848732900 Protocol Server starting. 

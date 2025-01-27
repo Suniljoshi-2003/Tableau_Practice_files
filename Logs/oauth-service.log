@@ -1,0 +1,39 @@
+INFO  2024-12-16 11:52:16.197 +0530 main : com.tableau.OAuthServiceMain - Starting OAuthServiceMain using Java 11.0.22.0.101 on DESKTOP-0NSNOP7 with PID 27024 (C:\Program Files\Tableau\Tableau Public 2024.1\bin\oauthservice.jar started by lenovo in C:\Users\lenovo\AppData\Local\Temp\TableauTemp)
+INFO  2024-12-16 11:52:16.198 +0530 main : com.tableau.OAuthServiceMain - No active profile set, falling back to 1 default profile: "default"
+INFO  2024-12-16 11:52:18.743 +0530 main : com.tableau.grpc.OAuthGrpcServer - OAuthProviderService started, listening on 50965.
+INFO  2024-12-16 11:52:18.844 +0530 main : com.tableau.OAuthServiceMain - Started OAuthServiceMain in 4.018 seconds (JVM running for 7.014)
+INFO  2024-12-16 11:52:19.743 +0530 grpc-default-executor-0 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2024-12-16 11:52:19.749 +0530 grpc-default-executor-0 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2024-12-16 11:52:19.818 +0530 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2024-12-16 11:52:19.818 +0530 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2024-12-16 11:52:20.057 +0530 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2024-12-16 11:52:20.057 +0530 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:50967/Tokens&username=&instanceurl=&role=
+INFO  2024-12-16 11:52:23.965 +0530 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Received request to cancel the current authentication login.
+INFO  2024-12-16 11:52:23.965 +0530 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Cancel login.
+WARN  2024-12-16 11:52:23.966 +0530 grpc-default-executor-0 : com.tableau.oauth.utils.receivers.GenericOAuthReceiver - Operation interrupted, throwing timeout error.
+ERROR 2024-12-16 11:52:23.967 +0530 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Stopping server...
+INFO  2024-12-16 11:52:23.968 +0530 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Altering the response observer that the call is completed
+ERROR 2024-12-16 11:52:23.968 +0530 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Exception thrown while attempting to get the oauth tokens: java.io.IOException: Stopping server...
+ERROR 2024-12-16 11:52:23.969 +0530 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Authorization request timed out. The user may have closed the browser or cancelled the request.
+java.io.IOException: Stopping server...
+	at com.tableau.oauth.requestors.GalopRequestor.asCleanIOException(GalopRequestor.java:97) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:131) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	at com.tableau.oauth.service.OAuthService.initialAuthorization(OAuthService.java:115) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	at com.tableau.oauth.grpc.OAuthV1GrpcAdapter.initialAuthorization(OAuthV1GrpcAdapter.java:46) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	at com.tableau.connect.oauthservice.OAuthServiceGrpc$MethodHandlers.invoke(OAuthServiceGrpc.java:895) ~[classes!/:?]
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182) ~[grpc-stub-1.49.2.jar!/:1.49.2]
+	at io.grpc.PartialForwardingServerCallListener.onHalfClose(PartialForwardingServerCallListener.java:35) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.ForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:23) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.ForwardingServerCallListener$SimpleForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:40) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.Contexts$ContextualizedServerCallListener.onHalfClose(Contexts.java:86) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:354) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:866) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.util.concurrent.TimeoutException: Stopping server...
+	at com.tableau.oauth.utils.receivers.GenericOAuthReceiver.waitForResponse(GenericOAuthReceiver.java:176) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:126) ~[oauth-service-impl-20241.0.1-jre8.rel.jar!/:?]
+	... 15 more
